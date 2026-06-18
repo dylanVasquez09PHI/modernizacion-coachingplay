@@ -23,9 +23,8 @@ function animateCounter(elementId, targetValue) {
     }, speed);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
 
-    // Mapa de id → valor objetivo
+function initHero() {
     const targets = {
         'counter-tools-1': 120,
         'counter-countries-1': 15,
@@ -40,15 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 animateCounter(entry.target.id, targets[entry.target.id]);
-                observer.unobserve(entry.target); // se dispara solo una vez
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 }); // 0.3 = cuando el 30% del elemento es visible
+    }, { threshold: 0.3 });
 
-    // Observar cada elemento de contador
     Object.keys(targets).forEach(id => {
         const el = document.getElementById(id);
         if (el) observer.observe(el);
     });
+}
 
-});
+initHero();
