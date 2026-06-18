@@ -5,12 +5,13 @@ tailwind.config = {
       fontFamily: { sora: ['Sora', 'sans-serif'] },
       colors: {
         brand: {
-          pink:   '#E8297A',
+          pink:   '#da0780',
           yellow: '#F5C842',
           blue:   '#4FC3F7',
           purple: '#8B2FC9',
           bg:     '#0A0B10',
           card:   '#12131F',
+          gray:   '#f8f8f8',
         }
       },
       keyframes: {

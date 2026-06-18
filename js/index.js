@@ -1,35 +1,70 @@
 const components = {
-  navbar: './sections/components/navbar/navbar.html',
-  hero: './sections/components/hero/hero.html',
-  statics: './sections/components/statics/statics.html',
-  benefits: './sections/components/benefits/benefits.html',
-  receive: './sections/components/receive/receive.html',
-  contexts: './sections/components/contexts/contexts.html',
-  modules: './sections/components/modules/modules.html'
-  // footer: './sections/components/footer/footer.html'
+  navbar: {
+    html: './sections/components/navbar/navbar.html',
+    js: ''
+  },
+  hero: {
+    html: './sections/components/hero/hero.html',
+    js: './sections/components/hero/hero.js'
+  },
+  statics: {
+    html: './sections/components/statics/statics.html',
+    js: './sections/components/hero/hero.js'
+  },
+  methodology: {
+    html: './sections/components/methodology/methodology.html',
+    js: ''
+  },
+  benefits: {
+    html: './sections/components/benefits/benefits.html',
+    js: ''
+  },
+  receive: {
+    html: './sections/components/receive/receive.html',
+    js: ''
+  },
+  contexts: {
+    html: './sections/components/contexts/contexts.html',
+    js: '',
+  },
+  modules: {
+    html: './sections/components/modules/modules.html',
+    js: '',
+  },
+  games: {
+    html: './sections/components/games/games.html',
+    js: '',
+  },
+  reviews: {
+    html: './sections/components/reviews/reviews.html',
+    js: '',
+  }
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-  for (const [id, file] of Object.entries(components)) {
-    try {
-      const response = await fetch(file);
 
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${file}`);
-      }
+  for (const [name, component] of Object.entries(components)) {
 
-      const html = await response.text();
-
-      const container = document.getElementById(id);
-
-      if (container) {
-        container.innerHTML = html;
-      } else {
-        console.warn(`No existe el elemento con id="${id}"`);
-      }
-
-    } catch (error) {
-      console.error(`Error cargando ${file}:`, error);
-    }
+    await loadComponent(name, component);
   }
+
 });
+
+
+async function loadComponent(name, component) {
+
+  const response = await fetch(component.html);
+
+  document.getElementById(name).innerHTML =
+    await response.text();
+
+  if (component.js) {
+
+    const script = document.createElement('script');
+
+    script.src = component.js;
+
+    document.body.appendChild(script);
+
+  }
+}
