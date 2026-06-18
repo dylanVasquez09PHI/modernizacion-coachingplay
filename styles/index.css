@@ -1,0 +1,15 @@
+body {
+  font-family: 'Sora', sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #E8297A 0%, #F5C842 45%, #4FC3F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
